@@ -2,6 +2,8 @@
 var express = require('express'),
     app = express();
 
+app.use(express.static(__dirname + '/public'));
+
 // parse incoming URL-encoded form data and populate req.body object
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
