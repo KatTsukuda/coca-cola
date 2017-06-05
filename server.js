@@ -26,6 +26,7 @@ Sign.deleteMany({}, function(err) {
     console.log('clear successful');
 });
 createSignData();
+
 //***ROUTES***//
 
 app.use(express.static(__dirname + '/public'));
