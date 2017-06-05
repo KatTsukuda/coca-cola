@@ -16,33 +16,75 @@
 
         <!--VENDOR SCRIPTS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
 
         <!--APPLICATION SCRIPTS-->
         <script src="/scripts/app.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class ="row header">
-                <div class="col-md-8 col-md-offeset-2">
-                    <h1>Coockoo for Cola</h1>
-                </div>
+                <img class="cola-logo" src="http://vignette2.wikia.nocookie.net/logopedia/images/7/72/Always_Coca-Cola.png/revision/latest?cb=20161026064840">
+                <h1>Coockoo for Cola</h1>
             </div>
         </div>
         <div class="container-fluid entry-grids">
+            <div class="section group form">
+                <div class="col span_1_of_4" id="submit-form">
+                    <form method="POST" action="/api/signs" id="submit-entry">
+                        <div class="form-group">
+                            <label for="street-address">Street Address</label>
+                            <input type="text" name="street_address" id="street-address" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" name="city" id="city" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" name="state" id="state" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" name="description" id="description" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="image-url">Image URL</label>
+                            <input type="text" name="image_url" id="image-url" class="form-control" value="">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </form>
+                </div>
+                <div class="col span_1_of_4">
+                    column 2 of 4
+                </div>
+                <div class="col span_1_of_4">
+                    column 3 of 4
+                </div>
+                <div class="col span_1_of_4">
+                    column 4 of 4
+                </div>
+            </div>
             <div class="section group">
-                <div class="col-span_1_of_4">
-                Colum 1/4
+                <div class="col span_1_of_4 matchheight">
+                column 1 of 4
                 </div>
-                <div class="col-span_2_of_4">
-                Colum 2/4
+                <div class="col span_1_of_4 matchheight">
+                column 2 of 4
                 </div>
-                <div class="col-span_3_of_4">
-                Colum 3/4
+                <div class="col span_1_of_4 matchheight">
+                column 3 of 4
                 </div>
-                <div class="col-span_4_of_4">
-                Colum 4/4
+                <div class="col span_1_of_4 matchheight">
+                column 4 of 4
                 </div>
             </div>
         </div>
+        <!-- corresponds to Match Height jQuery file -->
+        <script type="text/javascript">
+        jQuery(function($) {
+            $('.matchheight').matchHeight();
+        });
+        </script>
     </body>
 </html>

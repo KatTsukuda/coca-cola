@@ -1,5 +1,14 @@
-h1 {
+h1, .cola-logo {
     color: #e6142c;
+    float: left;
+    padding: 15px;
+}
+.cola-logo {
+    height: 150px;
+    width: auto;
+}
+.container-fluid {
+    padding-left: 50px;
 }
 /*  SECTIONS */
 .section {
@@ -12,7 +21,7 @@ h1 {
 .col {
     display: block;
     float: left;
-    margin: 1% 0 1% 1.6%;
+    margin: 10px;
 }
 .col:first-child {margin-left: 0;}
 
@@ -24,4 +33,18 @@ h1 {
 }
 .group:after {
     clear:both;
+}
+
+/* FOUR COLUMN GRID */
+.span_4_of_4 {
+    width: 98%;
+}
+.span_3_of_4 {
+    width: 73%;
+}
+.span_2_of_4 {
+    width: 48%;
+}
+.span_1_of_4 {
+    width: 23%;
 }
