@@ -31,6 +31,20 @@ app.get('/', function homepage (req, res) {
     res.sendFile( __dirname + '/views/index.html');
 });
 
+// '/api' endpoint
+app.get('/api', function(req, res) {
+    res.json();
+});
+
+//all signs as JSON
+app.get('/api/signs', function(req, res) {
+    db.Sign.find(function(err, signs){
+        if (err) { return console.log('index error: ' + err); }
+        res.json(signs);
+    });
+});
+
+
 //***JSON ENDPOINTS***//
 
 

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var SignsSchema = new Schema ({
+var SignSchema = new Schema ({
     street_address: String,
     city: String,
     state: String,
@@ -9,5 +9,5 @@ var SignsSchema = new Schema ({
     image_url: String
 });
 
-var Sign = mongoose.model('Sign', SignsSchema)
+var Sign = mongoose.model('Sign', SignSchema)
 module.exports = Sign;
