@@ -38,7 +38,7 @@ app.get('/api', function apiIndex(req, res) {
         endpoints: [
             {method: 'GET', path: '/api', description: 'Describes all created'},
             {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
-            {method: 'POST', path: '/api/pies', description: 'Create a new sign entry'}
+            {method: 'POST', path: '/api/signs', description: 'Create a new sign entry'}
         ]
     });
 });
