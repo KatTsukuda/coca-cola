@@ -16,6 +16,7 @@
 
         <!--VENDOR SCRIPTS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
 
         <!--APPLICATION SCRIPTS-->
         <script src="/scripts/app.js"></script>
@@ -23,26 +24,32 @@
     <body>
         <div class="container">
             <div class ="row header">
-                <div class="col-md-8 col-md-offeset-2">
+                <div class="col-md-8 col-md-offset-2">
                     <h1>Coockoo for Cola</h1>
                 </div>
             </div>
         </div>
         <div class="container-fluid entry-grids">
             <div class="section group">
-                <div class="col-span_1_of_4">
+                <div class="col span_1_of_4 matchheight">
                 Colum 1/4
                 </div>
-                <div class="col-span_2_of_4">
+                <div class="col span_2_of_4 matchheight">
                 Colum 2/4
                 </div>
-                <div class="col-span_3_of_4">
+                <div class="col span_3_of_4 matchheight">
                 Colum 3/4
                 </div>
-                <div class="col-span_4_of_4">
+                <div class="col span_4_of_4 matchheight">
                 Colum 4/4
                 </div>
             </div>
         </div>
+        <!-- corresponds to Match Height jQuery file -->
+        <script type="text/javascript">
+        jQuery(function($) {
+            $('.matchheight').matchHeight();
+        });
+        </script>
     </body>
 </html>
