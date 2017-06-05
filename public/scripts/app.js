@@ -6,7 +6,7 @@ let signID;
 $(document).ready(function() {
     console.log('app.js loaded!');
 
-    $signList = $('.entry');
+    $signList = $('.group');
 
     $.ajax({
         method: 'GET',
@@ -17,9 +17,13 @@ $(document).ready(function() {
     // handle functions
     function getSignHTML(sign) {
         console.log("sign" + sign);
-        return `<div class="sign" data-id="sign-${sign._id}">
-            <img src="${sign.image_url}">
-            <p>${sign.city}, ${sign.state}</p>
+        return `<div class="entry clearfix">
+            <div class="col-md-10 offset-md-2">
+                <div class="sign" data-id="sign-${sign._id}">
+                <img src="${sign.image_url}">
+                <p>${sign.city}, ${sign.state}</p>
+                </div>
+            </div>
         </div>`;
     }
     function getAllSignsHTML(signs) {
