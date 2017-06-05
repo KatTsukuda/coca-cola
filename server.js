@@ -34,7 +34,7 @@ app.get('/', function homepage (req, res) {
 // '/api' endpoint
 app.get('/api', function apiIndex(req, res) {
     res.json({
-        baseURL: "https://murmuring-tundra-78362.herokuapp.com/",
+        baseURL: "",
         endpoints: [
             {method: 'GET', path: '/api', description: 'Describes all created'},
             {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
