@@ -2,8 +2,6 @@
 var express = require('express'),
     app = express();
 
-app.use(express.static(__dirname + '/public'));
-
 // parse incoming URL-encoded form data and populate req.body object
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -22,9 +20,15 @@ var db = require('./models');
 var createSignData = require('./seed');
 var Sign = db.Sign;
 
+
+// clear sign entries on reload
+Sign.deleteMany({}, function(err) {
+    console.log('clear successful');
+});
+createSignData();
 //***ROUTES***//
 
-
+app.use(express.static(__dirname + '/public'));
 
 //***HTML ENDPOINTS***//
 app.get('/', function homepage (req, res) {
@@ -34,7 +38,7 @@ app.get('/', function homepage (req, res) {
 // '/api' endpoint
 app.get('/api', function apiIndex(req, res) {
     res.json({
-        baseURL: "https://murmuring-tundra-78362.herokuapp.com/",
+        baseURL: "https://frostybear.herokuapp.com/",
         endpoints: [
             {method: 'GET', path: '/api', description: 'Describes all created'},
             {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
@@ -45,7 +49,7 @@ app.get('/api', function apiIndex(req, res) {
 
 //all signs as JSON
 app.get('/api/signs', function index(req, res) {
-    db.Sign.find({}, function(err, signs) {
+    Sign.find({}, function(err, signs) {
         if (err) { return console.log('index error: ' + err); }
         console.log('signs' + signs);
         res.json(signs);
