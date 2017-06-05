@@ -32,14 +32,22 @@ app.get('/', function homepage (req, res) {
 });
 
 // '/api' endpoint
-app.get('/api', function(req, res) {
-    res.json();
+app.get('/api', function apiIndex(req, res) {
+    res.json({
+        baseURL: "https://murmuring-tundra-78362.herokuapp.com/",
+        endpoints: [
+            {method: 'GET', path: '/api', description: 'Describes all created'},
+            {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
+            {method: 'POST', path: '/api/pies', description: 'Create a new sign entry'}
+        ]
+    });
 });
 
 //all signs as JSON
-app.get('/api/signs', function(req, res) {
-    db.Sign.find(function(err, signs){
+app.get('/api/signs', function index(req, res) {
+    db.Sign.find({}, function(err, signs) {
         if (err) { return console.log('index error: ' + err); }
+        console.log('signs' + signs);
         res.json(signs);
     });
 });
