@@ -16,7 +16,6 @@
 
         <!--VENDOR SCRIPTS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
 
         <!--APPLICATION SCRIPTS-->
         <script src="/scripts/app.js"></script>
@@ -24,13 +23,14 @@
     <body>
         <div class="container-fluid">
             <div class ="row header">
-                <img class="cola-logo" src="http://vignette2.wikia.nocookie.net/logopedia/images/7/72/Always_Coca-Cola.png/revision/latest?cb=20161026064840">
+                <img class="cola-logo navbar-logo" src="http://vignette2.wikia.nocookie.net/logopedia/images/7/72/Always_Coca-Cola.png/revision/latest?cb=20161026064840">
                 <h1>Coockoo for Cola</h1>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="section group form">
-                <div class="col span_1_of_4" id="submit-form">
+            <div class="section form">
+                <div id="submit-form">
+                    <div class="col-md-5">
                     <form method="POST" action="/api/signs" id="submit-entry">
                         <div class="form-group">
                             <label for="street-address">Street Address</label>
@@ -54,37 +54,11 @@
                         </div>
                         <button type="submit" class="btn btn-danger">Submit</button>
                     </form>
+                    </div>
                 </div>
-                <div class="col span_1_of_4 entry">
-                    column 2 of 4
-                </div>
-                <div class="col span_1_of_4 entry">
-                    column 3 of 4
-                </div>
-                <div class="col span_1_of_4 entry">
-                    column 4 of 4
-                </div>
-            </div>
-            <div class="section group">
-                <div class="col span_1_of_4 matchheight entry">
-                column 1 of 4
-                </div>
-                <div class="col span_1_of_4 matchheight entry">
-                column 2 of 4
-                </div>
-                <div class="col span_1_of_4 matchheight entry">
-                column 3 of 4
-                </div>
-                <div class="col span_1_of_4 matchheight entry">
-                column 4 of 4
+                <div class="group">
                 </div>
             </div>
         </div>
-        <!-- corresponds to Match Height jQuery file -->
-        <script type="text/javascript">
-        jQuery(function($) {
-            $('.matchheight').matchHeight();
-        });
-        </script>
     </body>
 </html>

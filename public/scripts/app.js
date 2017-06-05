@@ -1,12 +1,12 @@
-let allSigns = [];
 let $signList;
+let allSigns = [];
 let formUpdate;
 let signID;
 
 $(document).ready(function() {
     console.log('app.js loaded!');
 
-    $signList = $('div.entry');
+    $signList = $('.group');
 
     $.ajax({
         method: 'GET',
@@ -14,22 +14,16 @@ $(document).ready(function() {
         success: handleSuccess
     });
 
-    // add a new sign entry
-    $('#submit-form').on('submit', function(entry) {
-        e.preventDefault();
-        $.ajax({
-            method: 'POST',
-            url: '/api/signs',
-            data: $(this).serialize(),
-            success: newSignSuccess
-        })
-    })
-
     // handle functions
     function getSignHTML(sign) {
-        return `<div class="sign" data-id="sign-${sign._id}">
-            <img src="${sign.image_url}">
-            <p>${sign.city}, ${sign.state}</p>
+        console.log("sign" + sign);
+        return `<div class="entry clearfix">
+            <div class="col-md-10 offset-md-2">
+                <div class="sign" data-id="sign-${sign._id}">
+                <img src="${sign.image_url}">
+                <p>${sign.city}, ${sign.state}</p>
+                </div>
+            </div>
         </div>`;
     }
     function getAllSignsHTML(signs) {
@@ -46,9 +40,5 @@ $(document).ready(function() {
         allSigns = json;
         render();
     }
-    function newSignSuccess(json) {
-        $('#submit-form input').val('');
-        allSigns.push(json);
-        render();
-    };
+
 });
