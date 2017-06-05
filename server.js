@@ -36,6 +36,7 @@ app.get('/', function homepage (req, res) {
     res.sendFile( __dirname + '/views/index.html');
 });
 
+//***JSON ENDPOINTS***//
 // '/api' endpoint
 app.get('/api', function apiIndex(req, res) {
     res.json({
@@ -48,18 +49,29 @@ app.get('/api', function apiIndex(req, res) {
     });
 });
 
-//all signs as JSON
-app.get('/api/signs', function index(req, res) {
-    Sign.find({}, function(err, signs) {
-        if (err) { return console.log('index error: ' + err); }
-        console.log('signs' + signs);
-        res.json(signs);
+// create new sign
+app.post('/api/signs', function signsCreate(req, res) {
+    // create new sign with form data ('req.body');
+    console.log('POST REQUEST FOR DATA: ', req.body);
+    // object of post request containing data for the signs.js
+    var newSign = new Sign(req.body);
+
+    newSign.save(function (err, sign) {
+        if(err) {
+            console.log("no sign created. try again", err);
+        }
+        res.json(sign);
     });
 });
 
 
-//***JSON ENDPOINTS***//
-
+//all signs as JSON
+app.get('/api/signs', function index(req, res) {
+    Sign.find({}, function(err, signs) {
+        if (err) { return console.log('index error: ' + err); }
+        res.json(signs);
+    });
+});
 
 //***SERVER***//
 
