@@ -1,3 +1,27 @@
 h1 {
-    color: red;
+    color: #e6142c;
+}
+/*  SECTIONS */
+.section {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*  COLUMN FRAMEWORK */
+.col {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.6%;
+}
+.col:first-child {margin-left: 0;}
+
+/* GROUPING */
+.group:before,
+.group:after {
+    content:"";
+    display:table;
+}
+.group:after {
+    clear:both;
 }
