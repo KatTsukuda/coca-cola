@@ -26,3 +26,28 @@ h1 {
 .group:after {
     clear:both;
 }
+
+/* FOUR COLUMN GRID */
+.span_4_of_4 {
+    width: 98%;
+}
+.span_3_of_4 {
+    width: 73%;
+}
+.span_2_of_4 {
+    width: 48%;
+}
+.span_1_of_4 {
+    width: 23%;
+}
+
+/*  THREE COLUMN GRID */
+.span_12_of_12 {
+    width: 95%;
+}
+.span_8_of_12 {
+    width: 62%;
+}
+.span_6_of_12 {
+    width: 31%;
+}
