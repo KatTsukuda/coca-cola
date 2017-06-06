@@ -46,8 +46,25 @@ app.get('/api', function apiIndex(req, res) {
         endpoints: [
             {method: 'GET', path: '/api', description: 'Describes all created'},
             {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
-            {method: 'POST', path: '/api/signs', description: 'Create a new sign entry'}
+            {method: 'GET', path: '/api/signs/:id', description: 'Get sign by id'},
+            {method: 'POST', path: '/api/signs', description: 'Create a new sign entry'},
+            {method: 'DELETE', path: '/api/signs/:id', description: 'Destroy a sign entry'}
         ]
+    });
+});
+
+// create new sign
+app.post('/api/signs', function signsCreate(req, res) {
+    // create new sign with form data ('req.body');
+    console.log('POST REQUEST FOR DATA: ', req.body);
+    // object of post request containing data for the signs.js
+    var newSign = new Sign(req.body);
+
+    newSign.save(function (err, sign) {
+        if(err) {
+            console.log("no sign created. try again", err);
+        }
+        res.json(sign);
     });
 });
 
@@ -56,6 +73,15 @@ app.get('/api/signs', function index(req, res) {
     Sign.find({}, function(err, signs) {
         if (err) { return console.log('index error: ' + err); }
         res.json(signs);
+    });
+});
+
+//delete one sign using id
+app.delete('/api/signs/:id', function destroy(req, res) {
+    let signID = req.params.id;
+
+    Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
+        res.json(deletedSign);
     });
 });
 

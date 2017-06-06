@@ -1,3 +1,7 @@
+/* HEADERS AND BODY FONT*/
+body {
+    font-family: 'Open Sans', sans-serif;
+}
 .cola-logo {
     float: left;
     width: 80px;
@@ -9,17 +13,63 @@ h1 {
     color: #e6142c;
     margin-top: 50px;
 }
+h4 {
+    margin: -20px 0 15px 115px;
+    font-weight: bold;
+}
 
-/*  COLUMN FRAMEWORK */
+/* SUBMIT FORM */
+.form-gif {
+    width: 66%;
+    height: auto;
+    margin: 5px 0 10px 100px;
+}
+
+/* FOOTER */
+footer p {
+    margin: 25px 0 20px 20px;
+    color: #FFFFFF;
+}
+footer {
+    background-color: #e6142c;
+}
+
+/*  ENTRY FRAMEWORK */
 .clearfix {
     overflow: auto;
     zoom: 1;
 }
 .sign {
     display: block;
+    margin-top: 15px;
 }
 .sign img {
-    padding: 5px;
-    width: 60%;
-    height: auto;
+    position: relative;
+    height: 300px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #e6142c;
+}
+.sign:hover .overlay {
+    opacity: 1;
+}
+
+.description {
+    color: #FFFFFF;
+    margin: 30px;
+    top: 50%;
+    left: 50%;
+}
+.deleteBtn p {
+    margin-left: 20px;
 }

@@ -1,7 +1,6 @@
 let $signList;
 let allSigns = [];
 let formUpdate;
-let signID;
 
 $(document).ready(function() {
     console.log('app.js loaded!');
@@ -16,27 +15,74 @@ $(document).ready(function() {
     });
 
     // add new sign entry
-    $('#submit-entry').on('submit', function(entry) {
-        entry.preventDefault();
+    $('#submit-entry').on('submit', function(event) {
+        event.preventDefault();
         $.ajax({
             method: 'POST',
             url: '/api/signs',
             data: $(this).serialize(),
             success: newSignSuccess
-        })
-    })
+        });
+    });
 
-    // handle functions
+    // delete entries
+        $('.group').on('click', '.deleteBtn', function(event) {
+            console.log('event' + event);
+            let signID = $(event.delegateTarget).attr('data-id');
+            console.log('sign id ' + signID);
+            let deleteSign = allSigns.filter(function(sign) {
+                console.log('sign ' + sign);
+                return sign._id == signID;
+            })[0];
+            $.ajax({
+                method: 'DELETE',
+                url: '/api/signs/59366501f64959bc938d8ac6',
+                success: function deleteSuccess(data) {
+                    allSigns.splice(allSigns.indexOf(deleteSign));
+                    render();
+                }
+            });
+        });
+
+    //*** HANDLE FUNCTIONS ***//
+
     function getSignHTML(sign) {
-        return `<div class="entry clearfix">
-            <div class="col-md-10 offset-md-2">
-                <div class="sign" data-id="sign-${sign._id}">
-                <img src="${sign.image_url}">
-                <p>${sign.city}, ${sign.state}</p>
+
+        return `<div class="entry">
+            <div class="col-sm-3">
+                <div class="sign clearfix">
+                    <img src="${sign.image_url}">
+                    <div class="overlay">
+                        <p class="description">${sign.city}, ${sign.state}</p>
+                        <p class="description">${sign.description}</p>
+                    </div>
                 </div>
+                <button type="button" class="deleteBtn btn btn-default btn-lg" data-id="${sign._id}">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
             </div>
         </div>`;
     }
+
+    // $signList.on('click', '.deleteBtn', function() {
+    //     console.log('clicked delete button to', '/api/signs/'+$(this).attr('data-id'));
+    //     $.ajax({
+    //         method: 'DELETE',
+    //         url: '/api/signs/'+$(this).attr('data-id'),
+    //         success: deleteSignSuccess,
+    //         error: deleteSignError
+    //     });
+    // });
+    //
+    // function deleteSignSuccess() {
+    //
+    // }
+    //
+    // function deleteSignError() {
+    //
+    // }
+    //
+
     function getAllSignsHTML(signs) {
         return signs.map(getSignHTML).join('');
     }
@@ -45,12 +91,12 @@ $(document).ready(function() {
         $signList.empty();
         $signList.append(getAllSignsHTML(allSigns));
     }
-    // response for GET request for all signs
+    // response for SHOW to request all signs
     function handleSuccess(json) {
         allSigns = json;
         render();
     }
-    // response for PUT request for new sign entries
+    // response for CREATE to request new sign entries
     function newSignSuccess(json) {
         $('#submit-entry input').val('');
 
