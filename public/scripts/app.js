@@ -38,7 +38,7 @@ $(document).ready(function() {
                 method: 'DELETE',
                 url: '/api/signs/59366501f64959bc938d8ac6',
                 success: function deleteSuccess(data) {
-                    allSigns.splice(allSigns.indexOf(deleteSign), 1);
+                    allSigns.splice(allSigns.indexOf(deleteSign));
                     render();
                 }
             });
@@ -49,18 +49,20 @@ $(document).ready(function() {
     function getSignHTML(sign) {
 
         return `<div class="entry">
-            <div class="col-md-10 offset-md-2">
-                <div class="sign">
+            <div class="col-sm-3">
+                <div class="sign clearfix">
                     <img src="${sign.image_url}">
-                    <p>${sign.city}, ${sign.state}</p>
-                    <button type="button" class="deleteBtn btn btn-default btn-lg" data-id="${sign._id}">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </button>
+                    <div class="overlay">
+                        <p class="description">${sign.city}, ${sign.state}</p>
+                        <p class="description">${sign.description}</p>
+                    </div>
                 </div>
+                <button type="button" class="deleteBtn btn btn-default btn-lg" data-id="${sign._id}">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
             </div>
         </div>`;
     }
-
 
     // $signList.on('click', '.deleteBtn', function() {
     //     console.log('clicked delete button to', '/api/signs/'+$(this).attr('data-id'));
