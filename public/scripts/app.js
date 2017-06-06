@@ -94,7 +94,7 @@ $(document).ready(function() {
     }
     // response for SHOW to request all signs
     function handleSuccess(json) {
-        allSigns = json;
+        allSigns = json.reverse();
         render();
     }
     // response for CREATE to request new sign entries
@@ -112,7 +112,6 @@ $(document).ready(function() {
         console.log(json);
 
         let signID = sign._id;
-        console.log('delete sign entry ' + signID);
 
         // search through array for signID to delete from array
         for(let index=0; index<allSigns.length; index++) {
