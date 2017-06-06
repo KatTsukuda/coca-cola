@@ -33,10 +33,36 @@ $(document).ready(function() {
                 <div class="sign" data-id="sign-${sign._id}">
                 <img src="${sign.image_url}">
                 <p>${sign.city}, ${sign.state}</p>
+
+                <button type="button" class="deleteBtn btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+
                 </div>
             </div>
         </div>`;
     }
+
+
+    $signList.on('click', '.deleteBtn', function() {
+        console.log('clicked delete button to', '/api/signs/'+$(this).attr('data-id'));
+        $.ajax({
+            method: 'DELETE',
+            url: '/api/signs/'+$(this).attr('data-id'),
+            success: deleteSignSuccess,
+            error: deleteSignError
+        });
+    });
+
+    function deleteSignSuccess() {
+
+    }
+
+    function deleteSignError() {
+
+    }
+    
+
     function getAllSignsHTML(signs) {
         return signs.map(getSignHTML).join('');
     }
