@@ -75,6 +75,15 @@ app.get('/api/signs', function index(req, res) {
     });
 });
 
+//delete one sign using id
+app.delete('/api/signs/:id', function destroy(req, res) {
+    signID = req.params.id;
+    console.log('destroy signID: ', signID);
+    db.Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
+        res.json(deletedSign);
+    });
+});
+
 //***SERVER***//
 
 //CONNECT TO LOCAL SERVER AND HEROKU
