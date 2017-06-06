@@ -46,7 +46,9 @@ app.get('/api', function apiIndex(req, res) {
         endpoints: [
             {method: 'GET', path: '/api', description: 'Describes all created'},
             {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
-            {method: 'POST', path: '/api/signs', description: 'Create a new sign entry'}
+            {method: 'GET', path: '/api/signs/:id', description: 'Get sign by id'},
+            {method: 'POST', path: '/api/signs', description: 'Create a new sign entry'},
+            {method: 'DELETE', path: '/api/signs/:id', description: 'Destroy a sign entry'}
         ]
     });
 });
@@ -66,7 +68,6 @@ app.post('/api/signs', function signsCreate(req, res) {
     });
 });
 
-
 //all signs as JSON
 app.get('/api/signs', function index(req, res) {
     Sign.find({}, function(err, signs) {
@@ -77,9 +78,9 @@ app.get('/api/signs', function index(req, res) {
 
 //delete one sign using id
 app.delete('/api/signs/:id', function destroy(req, res) {
-    signID = req.params.id;
-    console.log('destroy signID: ', signID);
-    db.Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
+    let signID = req.params.id;
+    
+    Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
         res.json(deletedSign);
     });
 });
