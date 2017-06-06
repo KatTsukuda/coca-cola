@@ -16,8 +16,7 @@ $(document).ready(function() {
     });
 
     // add new sign entry
-    $('#submit-form').on('submit', function(entry) {
-        console.log("submit form entry: " + entry);
+    $('#submit-entry').on('submit', function(entry) {
         entry.preventDefault();
         $.ajax({
             method: 'POST',
