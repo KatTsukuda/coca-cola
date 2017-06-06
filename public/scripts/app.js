@@ -26,21 +26,22 @@ $(document).ready(function() {
     });
 
     // delete entries
-        $('.group').on('click', '.deleteBtn', function(event) {
-            console.log('event' + event);
-            let signID = $(event.delegateTarget).attr('data-id');
-            console.log('sign id ' + signID);
-            let deleteSign = allSigns.filter(function(sign) {
-                console.log('sign ' + sign);
-                return sign._id == signID;
-            })[0];
+        $signList.on('click', '.deleteBtn', function(event) {
+            console.log('clicked delete button ', '/api/signs/' + $(this).attr('data-id'));
+
+            // let signID = $(event.delegateTarget).attr('data-id');
+            //
+            // console.log(signID);
+
+            // let deleteSign = allSigns.filter(function(sign) {
+            //
+            // });
+
+
             $.ajax({
                 method: 'DELETE',
-                url: '/api/signs/59366501f64959bc938d8ac6',
-                success: function deleteSuccess(data) {
-                    allSigns.splice(allSigns.indexOf(deleteSign));
-                    render();
-                }
+                url: '/api/signs/' + $(this).attr('data-id'),
+                success: deleteSuccess
             });
         });
 
@@ -93,7 +94,7 @@ $(document).ready(function() {
     }
     // response for SHOW to request all signs
     function handleSuccess(json) {
-        allSigns = json;
+        allSigns = json.reverse();
         render();
     }
     // response for CREATE to request new sign entries
@@ -103,6 +104,23 @@ $(document).ready(function() {
         // add new sign entry to top of list -- unshift is inverse of push method
         allSigns.unshift(json);
 
+        render();
+    }
+    function deleteSuccess(json) {
+        let sign = json;
+
+        console.log(json);
+
+        let signID = sign._id;
+
+        // search through array for signID to delete from array
+        for(let index=0; index<allSigns.length; index++) {
+            if(allSigns[index]._id === signID) {
+                allSigns.splice(index, 1);
+                // end for loop and splice once signID is found
+                break;
+            }
+        }
         render();
     }
 });
