@@ -4,4 +4,4 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI ||
 "mongodb://localhost/coca-cola");
 
-module.exports.Sign = require("./signs.js")
+module.exports.Sign = require("./signs.js");

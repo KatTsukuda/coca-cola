@@ -44,7 +44,7 @@ var sign_data = [
     description: 'The world largest Coca Cola sign, made from Coke bottles placed in the Chilean desert.',
     image_url: 'http://i.imgur.com/ZJR1RFQ.jpg'
     }
-]
+];
 
 function signData() {
     db.Sign.create(sign_data, function cocaColaSigns(err, signs) {

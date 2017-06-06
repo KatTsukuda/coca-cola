@@ -1,7 +1,6 @@
 let $signList;
 let allSigns = [];
 let formUpdate;
-let signID;
 
 $(document).ready(function() {
     console.log('app.js loaded!');
@@ -23,12 +22,27 @@ $(document).ready(function() {
             url: '/api/signs',
             data: $(this).serialize(),
             success: newSignSuccess
-        })
-    })
+        });
+    });
 
-    // handle functions
+    // delete entries
+    function deleteEntry() {
+        $('.entry').on('click', 'btn-delete', function(entry) {
+            let signID = $(entry.target).attr('data-id');
+            $.ajax({
+                method: 'DELETE',
+                url: '/api/signs/$(signID)',
+                success: function(deleteEntrySuccess) {
+                    render();
+                }
+            });
+        });
+    }
+
+    //*** HANDLE FUNCTIONS ***//
+
     function getSignHTML(sign) {
-        return `<div class="entry clearfix">
+        return `<div class="entry">
             <div class="col-md-10 offset-md-2">
                 <div class="sign" data-id="sign-${sign._id}">
                 <img src="${sign.image_url}">
