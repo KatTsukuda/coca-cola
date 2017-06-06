@@ -1,3 +1,4 @@
+/* HEADERS AND BODY FONT*/
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -11,6 +12,26 @@ h1 {
     text-align: left;
     color: #e6142c;
     margin-top: 50px;
+}
+h4 {
+    margin: -20px 0 15px 115px;
+    font-weight: bold;
+}
+
+/* SUBMIT FORM */
+.form-gif {
+    width: 66%;
+    height: auto;
+    margin: 5px 0 10px 100px;
+}
+
+/* FOOTER */
+footer p {
+    margin: 25px 0 20px 20px;
+    color: #FFFFFF;
+}
+footer {
+    background-color: #e6142c;
 }
 
 /*  ENTRY FRAMEWORK */
