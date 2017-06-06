@@ -25,6 +25,8 @@ var Sign = db.Sign;
 Sign.deleteMany({}, function(err) {
     console.log('clear successful');
 });
+
+// populate seed data
 createSignData();
 
 //***ROUTES***//

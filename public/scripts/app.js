@@ -43,10 +43,7 @@ $(document).ready(function() {
     // render updates on page
     function render () {
         $signList.empty();
-
-        let signsHTML = getAllSignsHTML(allSigns);
-
-        $signList.append(signsHTML);
+        $signList.append(getAllSignsHTML(allSigns));
     }
     // response for GET request for all signs
     function handleSuccess(json) {
@@ -55,8 +52,11 @@ $(document).ready(function() {
     }
     // response for PUT request for new sign entries
     function newSignSuccess(json) {
-        $('#submit-form input').val('');
-        allSigns.push(json);
+        $('#submit-entry input').val('');
+
+        // add new sign entry to top of list -- unshift is inverse of push method
+        allSigns.unshift(json);
+
         render();
     }
 });
