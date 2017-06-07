@@ -44,62 +44,6 @@ var sign_data = [
     description: 'The world largest Coca Cola sign, made from Coke bottles placed in the Chilean desert.',
     image_url: 'http://i.imgur.com/ZJR1RFQ.jpg'
     }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
 ];
 
 function signData() {

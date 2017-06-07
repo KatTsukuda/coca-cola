@@ -126,7 +126,7 @@ $(document).ready(function() {
         //render all signs to view
         render();
     }
-});
+
     // response for CREATE to request new sign entries
     function newSignSuccess(json) {
     $('#submit-entry input').val('');
