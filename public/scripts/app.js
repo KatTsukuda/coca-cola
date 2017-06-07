@@ -38,14 +38,19 @@ $(document).ready(function() {
 
 
     // EDIT //
-    $signList.on('click', '.editBtn', function(event) {
-        console.log('clicked edit button ', '/api/signs/'+ $(this).attr('data-id'))
-        });
+    // initiate modal -- see modal event click in html below
+    $('.group').on('click', '.editBtn', function(event) {
+        console.log('clicked edit button ' + $(this).attr('data-id'));
+
+        let currentSignID = $(this).attr('data-id');
+
+        $('#edit-sign-modal').data('data-id', currentSignID)
+    });
 
     /////////////////////////////
     //*** HANDLE FUNCTIONS ***//
     ///////////////////////////
-    
+
     function getSignHTML(sign) {
 
     return `<div class="entry">
@@ -53,6 +58,7 @@ $(document).ready(function() {
             <div class="sign clearfix">
                 <img src="${sign.image_url}">
                 <div class="overlay">
+                    <p class="description">${sign.street_address}</p>
                     <p class="description">${sign.city}, ${sign.state}</p>
                     <p class="description">${sign.description}</p>
                 </div>
@@ -161,42 +167,6 @@ $(document).ready(function() {
     //////////////////////////////////
     //*** MODAL and Edit Handlers***//
     /////////////////////////////////
-
-    function editSignFormHTML(sign, signID) {
-        //html for edit sign entry edit form
-        let signEditHTMLKeyValues = sign.map(function(sign) {
-            return(`
-                <form class="form-inline" data-id="${sign._id}">
-                    <div class="form-group">
-                        <input type="text" name="street_address" class="form-control street-address" value="${sign.street_address}">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-inline">
-                            <input type="text" name="city" class="form-control state" value="${sign.city}">
-                            <input type="text" name="state" class="form-control state" value="${sign.state}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="description" class="form-control description" value="${sign.description}">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="image_url" class="form-control image-url" value="${sign.image_url}">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-danger" data-id="${sign._id}">x</button>
-                    </div>
-                </form>
-            `);
-        });
-        return signEditHTMLKeyValues.join("");
-    }
-
-    function showEditEntryModal(sign, signID) {
-        let editSignFormHTML = showEditEntryForm (sign, signID);
-
-        $('#edit-sign-data').html(editSignFormHTML);
-    }
-
     function editSuccess(json) {
 
         let sign = json;
