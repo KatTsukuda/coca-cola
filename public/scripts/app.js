@@ -1,6 +1,5 @@
 let $signList;
 let allSigns = [];
-let formUpdate;
 
 $(document).ready(function() {
     console.log('app.js loaded!');
@@ -29,21 +28,63 @@ $(document).ready(function() {
         $signList.on('click', '.deleteBtn', function(event) {
             console.log('clicked delete button ', '/api/signs/' + $(this).attr('data-id'));
 
-            // let signID = $(event.delegateTarget).attr('data-id');
-            //
-            // console.log(signID);
-
-            // let deleteSign = allSigns.filter(function(sign) {
-            //
-            // });
-
-
             $.ajax({
                 method: 'DELETE',
                 url: '/api/signs/' + $(this).attr('data-id'),
                 success: deleteSuccess
             });
         });
+
+    // editing an entry
+        $signList.on('click', '.editBtn', function(event) {
+            console.log('clicked edit button ', '/api/signs/'+ $(this).attr('data-id'))
+            event.preventDefault();
+            // let sign = data;
+            //
+            // //find sign id stored in HTML as 'data-id'
+            // var signID = sign._id;
+            //
+            // //find sign to update by id
+            // var signToUpdate = allSigns.filter(function (sign) {
+            //     return sign._id == signId;
+            // })[0];
+
+            //serialize form data
+            var updatedSign = $(this).serialize();
+
+            //PUT request to update sign
+            $.ajax({
+                method: 'PUT',
+                url: '/api/signs/' + $(this).attr('data-id'),
+                data: updatedSign,
+                success: function(data) {
+                    let sign = data;
+
+                    //find sign id stored in HTML as 'data-id'
+                    var signId = sign._id;
+
+                    //find sign to update by id
+                    var signToUpdate = allSigns.filter(function (sign) {
+                        return sign._id == signId;
+                    })[0];
+                    //     //search through array for signID to edit sign from array
+                        for(let i=0; i<allSigns.length; i++) {
+                            if(allSigns[i]._id === signId) {
+
+                    //replace sign to update with newly updated version(data)
+                    allSigns.findOneAndUpdate(
+                        {"city": "Chicago",
+                        "state": "California"}
+                    );
+                    break;
+
+                    }
+                    //render all signs to view
+                    render();
+                }
+            }
+        });
+});
 
     //*** HANDLE FUNCTIONS ***//
 
@@ -61,28 +102,12 @@ $(document).ready(function() {
                 <button type="button" class="deleteBtn btn btn-default btn-lg" data-id="${sign._id}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </button>
+                <button type="button" class="editBtn btn btn-default btn-lg" data-id="${sign._id}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Refresh Yourself
+                </button>
             </div>
         </div>`;
     }
-
-    // $signList.on('click', '.deleteBtn', function() {
-    //     console.log('clicked delete button to', '/api/signs/'+$(this).attr('data-id'));
-    //     $.ajax({
-    //         method: 'DELETE',
-    //         url: '/api/signs/'+$(this).attr('data-id'),
-    //         success: deleteSignSuccess,
-    //         error: deleteSignError
-    //     });
-    // });
-    //
-    // function deleteSignSuccess() {
-    //
-    // }
-    //
-    // function deleteSignError() {
-    //
-    // }
-    //
 
     function getAllSignsHTML(signs) {
         return signs.map(getSignHTML).join('');
@@ -124,3 +149,18 @@ $(document).ready(function() {
         render();
     }
 });
+
+    // function editSuccess(json) {
+    //     let sign = json;
+    //
+    //     console.log(json);
+    //
+    //     let signID = sign._id;
+    //
+    //     //search through array for signID to edit sign from array
+    //     for(let i=0; i<allSigns.length; i++) {
+    //         if(allSigns[i]._id === signID) {
+    //
+    //         }
+    //     }
+    // }
