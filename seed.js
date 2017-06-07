@@ -38,68 +38,68 @@ var sign_data = [
     image_url: 'http://i.imgur.com/ruKA64V.jpg'
     },
     {
+    street_address: 'Downtown',
+    city: 'Laurens',
+    state: 'South Carolina',
+    description: 'Old Coca-Cola sign painted on a building.',
+    image_url: 'http://imgur.com/BDS3CmQ',
+    },
+    {
+    street_address: '',
+    city: 'Batesville',
+    state: 'Arkansas',
+    description: 'There were at least two versions of Coke signs painted on the side of the building',
+    image_url: 'http://imgur.com/twkJYOl',
+    },
+    {
+    street_address: 'SOHO',
+    city: 'New York',
+    state: 'New York',
+    description: 'Old sign in SOHO',
+    image_url: 'http://imgur.com/NErkilH',
+    },
+    {
+    street_address: '',
+    city: 'Galveston',
+    state: 'Texas',
+    description: '',
+    image_url: 'http://imgur.com/QHAT34B',
+    },
+    {
+    street_address: '',
+    city: 'Sydney',
+    state: 'Austraila',
+    description: 'A double decker bus passes the original Coca-Cola sign at the top of Kings Cross in 1961',
+    image_url: 'http://imgur.com/4CUjdsj',
+    },
+    {
+    street_address: '',
+    city: 'Paris',
+    state: 'France',
+    description: 'Vintage sign from Paris',
+    image_url: 'http://imgur.com/wGXd5Vq',
+    },
+    {
+    street_address: '',
+    city: 'Atlanta',
+    state: 'Georgia',
+    description: 'Thanks to the efforts of Atlanta-based Rabbi Tobias Gerren in the 1930s, Jews keeping kosher for Passover can still drink a Coke',
+    image_url: 'http://imgur.com/nmDV5CM',
+    },
+    {
+    street_address: 'French Quarter',
+    city: 'New Orleans',
+    state: 'Louisiana',
+    description: 'Vintage sign outside Royal Pharmacy',
+    image_url: 'http://imgur.com/2KamFNx',
+    },
+    {
     street_address: 'Atacama Desert',
     city: 'Arica',
     state: 'Chile',
     description: 'The world largest Coca Cola sign, made from Coke bottles placed in the Chilean desert.',
     image_url: 'http://i.imgur.com/ZJR1RFQ.jpg'
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
-    {
-    street_address: '',
-    city: '',
-    state: '',
-    description: '',
-    image_url: '',
-    }
+    },
 ];
 
 function signData() {
