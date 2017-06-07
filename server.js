@@ -56,14 +56,12 @@ app.get('/api', function apiIndex(req, res) {
 // show entry by id as JSON
 app.get('/api/signs/:id', function showSign(req, res) {
     console.log('sign id info: ' + req.body);
-    Sign.findById(req.params.signId, function (err, foundSign) {
-        if(err) {
-            console.log('Sign error: ' + err);
-        }
-        console.log('Sign response: ' + foundSign);
-        res.json(foundSign);
+
+    let id = req.params.id;
+    Sign.findOne({_id: id}, function (err, sign) {
+        res.json(sign);
     });
-});
+})
 // create new sign
 app.post('/api/signs', function signsCreate(req, res) {
     // create new sign with form data ('req.body');
