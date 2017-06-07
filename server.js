@@ -79,11 +79,59 @@ app.get('/api/signs', function index(req, res) {
 //delete one sign using id
 app.delete('/api/signs/:id', function destroy(req, res) {
     let signID = req.params.id;
-
     Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
         res.json(deletedSign);
     });
 });
+
+//edit one sign using id
+app.put('/api/signs/:id', function (req, res) {
+    //get sign id from url params
+    var signID = req.params.id;
+
+    console.log('sign id: ' + signID);
+    //find sign in database by id
+    Sign.findOne({ _id: signID }, function (err, foundSign) {
+        if (err) {
+            res.status(200).json({ error: err.message });
+        } else {
+            //update sign attributes
+            foundSign.street_address = req.body.street_address;
+            foundSign.city = req.body.city;
+            foundSign.state = req.body.state;
+            foundSign.description = req.body.description;
+            foundSign.image_url = req.body.image_url;
+
+            // save updated sign in DATABASE
+            foundSign.save(function (err, savedSign) {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    console.log('saved sign: ' + savedSign);
+                    res.json(savedSign);
+                }
+            });
+        }
+    });
+});
+
+
+// app.put('/api/signs/:id', function update(req, res) {
+//     console.log('updating', req.body);
+//     Sign.findById(req.params.signID, function(err, foundSign) {
+//         if(err) { console.log('signs update error', err); }
+//         // foundSign.street_address = req.body.street_address;
+//         // foundSign.city = req.body.city;
+//         // foundSign.state = req.body.state;
+//         // foundSign.description = req.body.description;
+//         // foundSign.image_url = req.body.image_url;
+//         foundSign.save(function(err, savedSign) {
+//             if(err) { console.log('saving updated sign failed'); }
+//             res.json(savedSign);
+//         });
+//     });
+// });
+
 
 //***SERVER***//
 
