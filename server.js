@@ -53,7 +53,17 @@ app.get('/api', function apiIndex(req, res) {
         ]
     });
 });
-
+// show entry by id as JSON
+app.get('/api/signs/:id', function showSign(req, res) {
+    console.log('sign id info: ' + req.body);
+    Sign.findById(req.params.signId, function (err, foundSign) {
+        if(err) {
+            console.log('Sign error: ' + err);
+        }
+        console.log('Sign response: ' + foundSign);
+        res.json(foundSign);
+    });
+});
 // create new sign
 app.post('/api/signs', function signsCreate(req, res) {
     // create new sign with form data ('req.body');
@@ -109,23 +119,6 @@ app.put('/api/signs/:id', function (req, res) {
         });
     });
 });
-
-// app.put('/api/signs/:id', function update(req, res) {
-//     console.log('updating', req.body);
-//     Sign.findById(req.params.signID, function(err, foundSign) {
-//         if(err) { console.log('signs update error', err); }
-//         // foundSign.street_address = req.body.street_address;
-//         // foundSign.city = req.body.city;
-//         // foundSign.state = req.body.state;
-//         // foundSign.description = req.body.description;
-//         // foundSign.image_url = req.body.image_url;
-//         foundSign.save(function(err, savedSign) {
-//             if(err) { console.log('saving updated sign failed'); }
-//             res.json(savedSign);
-//         });
-//     });
-// });
-
 
 //***SERVER***//
 

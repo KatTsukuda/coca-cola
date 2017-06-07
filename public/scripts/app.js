@@ -128,7 +128,7 @@ $(document).ready(function() {
             let sign = json;
 
             //find sign id stored in HTML as 'data-id'
-            var signID = sign._id;
+            let signID = sign._id;
 
 
             //     //search through array for signID to edit sign from array
