@@ -6,14 +6,14 @@ $(document).ready(function() {
 
     $signList = $('.group');
 
-    // show index of signs
+    // SHOW //
     $.ajax({
     method: 'GET',
     url: '/api/signs',
     success: handleSuccess
     });
 
-    // add new sign entry
+    // CREATE //
     $('#submit-entry').on('submit', function(event) {
         event.preventDefault();
         $.ajax({
@@ -24,7 +24,7 @@ $(document).ready(function() {
         });
     });
 
-    // delete entries
+    // DESTROY //
     $signList.on('click', '.deleteBtn', function(event) {
         console.log('clicked delete button ', '/api/signs/' + $(this).attr('data-id'));
 
@@ -37,13 +37,15 @@ $(document).ready(function() {
     });
 
 
-    // editing an entry
+    // EDIT //
     $signList.on('click', '.editBtn', function(event) {
         console.log('clicked edit button ', '/api/signs/'+ $(this).attr('data-id'))
         });
 
+    /////////////////////////////
     //*** HANDLE FUNCTIONS ***//
-
+    ///////////////////////////
+    
     function getSignHTML(sign) {
 
     return `<div class="entry">
