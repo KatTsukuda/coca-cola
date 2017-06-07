@@ -48,7 +48,8 @@ app.get('/api', function apiIndex(req, res) {
             {method: 'GET', path: '/api/signs', description: 'Index of all entries of signs'},
             {method: 'GET', path: '/api/signs/:id', description: 'Get sign by id'},
             {method: 'POST', path: '/api/signs', description: 'Create a new sign entry'},
-            {method: 'DELETE', path: '/api/signs/:id', description: 'Destroy a sign entry'}
+            {method: 'DELETE', path: '/api/signs/:id', description: 'Destroy a sign entry'},
+            {method: 'PUT', path: '/api/signs/:id', description: 'Edit an entry'}
         ]
     });
 });
@@ -87,34 +88,27 @@ app.delete('/api/signs/:id', function destroy(req, res) {
 //edit one sign using id
 app.put('/api/signs/:id', function (req, res) {
     //get sign id from url params
-    var signID = req.params.id;
-
-    console.log('sign id: ' + signID);
-    //find sign in database by id
-    Sign.findOne({ _id: signID }, function (err, foundSign) {
+    Sign.findById(req.params.id, function(err, sign) {
+        console.log('sign: ' + sign)
         if (err) {
-            res.status(200).json({ error: err.message });
-        } else {
-            //update sign attributes
-            foundSign.street_address = req.body.street_address;
-            foundSign.city = req.body.city;
-            foundSign.state = req.body.state;
-            foundSign.description = req.body.description;
-            foundSign.image_url = req.body.image_url;
-
-            // save updated sign in DATABASE
-            foundSign.save(function (err, savedSign) {
-                if (err) {
-                    res.status(500).json({ error: err.message });
-                } else {
-                    console.log('saved sign: ' + savedSign);
-                    res.json(savedSign);
-                }
-            });
+            res.send(err);
         }
+
+        //update sign attributes
+        sign.street_address = req.body.street_address;
+        sign.city = req.body.city;
+        sign.state = req.body.state;
+        sign.description = req.body.description;
+        sign.image_url = req.body.image_url;
+        // save updated sign in DATABASE
+        sign.save(function (err) {
+            if (err) {
+                return res.send(err);
+            }
+                res.json({message: 'Sign Updated'});
+        });
     });
 });
-
 
 // app.put('/api/signs/:id', function update(req, res) {
 //     console.log('updating', req.body);

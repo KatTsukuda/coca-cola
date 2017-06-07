@@ -49,42 +49,16 @@ $(document).ready(function() {
             //     return sign._id == signId;
             // })[0];
 
-            //serialize form data
-            var updatedSign = $(this).serialize();
+            // //serialize form data
+            // var updatedSign = $(this).serialize();
 
             //PUT request to update sign
             $.ajax({
                 method: 'PUT',
                 url: '/api/signs/' + $(this).attr('data-id'),
-                data: updatedSign,
-                success: function(data) {
-                    let sign = data;
-
-                    //find sign id stored in HTML as 'data-id'
-                    var signId = sign._id;
-
-                    //find sign to update by id
-                    var signToUpdate = allSigns.filter(function (sign) {
-                        return sign._id == signId;
-                    })[0];
-                    //     //search through array for signID to edit sign from array
-                        for(let i=0; i<allSigns.length; i++) {
-                            if(allSigns[i]._id === signId) {
-
-                    //replace sign to update with newly updated version(data)
-                    allSigns.findOneAndUpdate(
-                        {"city": "Chicago",
-                        "state": "California"}
-                    );
-                    break;
-
-                    }
-                    //render all signs to view
-                    render();
-                }
-            }
+                success: editSuccess
+            });
         });
-});
 
     //*** HANDLE FUNCTIONS ***//
 
@@ -141,26 +115,32 @@ $(document).ready(function() {
         // search through array for signID to delete from array
         for(let index=0; index<allSigns.length; index++) {
             if(allSigns[index]._id === signID) {
-                allSigns.splice(index, 1);
+                allSigns.splice(index);
                 // end for loop and splice once signID is found
                 break;
             }
         }
         render();
     }
-});
 
-    // function editSuccess(json) {
-    //     let sign = json;
-    //
-    //     console.log(json);
-    //
-    //     let signID = sign._id;
-    //
-    //     //search through array for signID to edit sign from array
-    //     for(let i=0; i<allSigns.length; i++) {
-    //         if(allSigns[i]._id === signID) {
-    //
-    //         }
-    //     }
-    // }
+    function editSuccess(json) {
+
+            let sign = json;
+
+            //find sign id stored in HTML as 'data-id'
+            var signID = sign._id;
+
+
+            //     //search through array for signID to edit sign from array
+                for(let i=0; i<allSigns.length; i++) {
+                    if(allSigns[i]._id === signID) {
+
+                //replace sign to update with newly updated version(data)
+                signs.findIdAndUpdate(req.params.id);
+                break;
+            }
+        }
+        //render all signs to view
+        render();
+    }
+});
