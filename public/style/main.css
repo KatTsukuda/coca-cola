@@ -1,4 +1,16 @@
 /* HEADERS AND BODY FONT*/
+@font-face {
+    font-family: 'loki_colaregular';
+    src: url('/webfontkit/lokicola_3-webfont.woff2') format('woff2'),
+         url('/webfontkit/lokicola_3-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+h1 {
+    font-family: 'loki_colaregular';
+}
 body {
     font-family: 'Open Sans', sans-serif;
 }
