@@ -66,7 +66,6 @@ $(document).ready(function() {
     function handleSignUpdateResponse(res, err) {
         let signID = res._id
         $('#' + signID).replaceWith(getSignHTML(res));
-        console.log(err);
         console.log(getSignHTML(res));
 
     }
@@ -77,9 +76,9 @@ $(document).ready(function() {
             <div class="sign clearfix">
                 <img src="${sign.image_url}">
                 <div class="overlay">
-                    <p class="description">${sign.street_address}</p>
-                    <p class="description">${sign.city}, ${sign.state}</p>
-                    <p class="description">${sign.description}</p>
+                    <p>${sign.street_address}</p>
+                    <p>${sign.city}, ${sign.state}</p>
+                    <p>${sign.description}</p>
                 </div>
             </div>
             <button type="button" class="deleteBtn btn btn-default btn-lg" data-id="${sign._id}">
@@ -115,24 +114,10 @@ $(document).ready(function() {
     render();
     }
 
-    function deleteSuccess(json) {
-        let sign = json;
-
-        console.log(json);
-
-        let signID = sign._id;
-
-        // search through array for signID to delete from array
-        for (let index = 0; index < allSigns.length; index++) {
-            if (allSigns[index]._id === signID) {
-                allSigns.splice(index);
-                // end for loop and splice once signID is found
-                break;
-            }
-        }
-        render();
+    function deleteSuccess(res, req) {
+        let signID = res._id
+        $('#' + signID).remove();
     }
-
 
     // response for CREATE to request new sign entries
     function newSignSuccess(json) {
@@ -141,25 +126,6 @@ $(document).ready(function() {
     // add new sign entry to top of list -- unshift is inverse of push method
     allSigns.unshift(json);
 
-    render();
-    }
-
-    // response for DESTROY to delete sign entry
-    function deleteSuccess(json) {
-    let sign = json;
-
-    console.log(json);
-
-    let signID = sign._id;
-
-    // search through array for signID to delete from array
-    for(let index=0; index<allSigns.length; index++) {
-        if(allSigns[index]._id === signID) {
-            allSigns.splice(index);
-            // end for loop and splice once signID is found
-            break;
-        }
-    }
     render();
     }
 });
