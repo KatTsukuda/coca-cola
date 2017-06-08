@@ -66,8 +66,7 @@ $(document).ready(function() {
         $('#' + signID).replaceWith(getSignHTML(res));
     }
     function getSignHTML(sign) {
-        return
-        `<div class="entry" id="${sign._id}">
+        return `<div class="entry" id="${sign._id}">
             <div class="col-sm-3">
                 <div class="sign clearfix">
                     <img class="materialboxed" width="300" src="${sign.image_url}">
