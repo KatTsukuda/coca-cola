@@ -104,7 +104,7 @@ var sign_data = [
     street_address: '701 Bryant St',
     city: 'San Francisco',
     state: 'California',
-    description: "Standing 112 feet above Bryant Street atop a three-story building in San Francisco's South of Market area, the billboard has been a landmark for drivers going to and from the Bay Bridge since 1937 -- the year after the bridge that connects San Francisco to Oakland opened.",
+    description: "Standing 112 feet above Bryant Street atop a three-story buildingthe billboard has been a landmark for drivers going to and from the Bay Bridge since 1937 -- the year after the bridge opened.",
     image_url: 'http://i.imgur.com/5aWZ0SM.jpg'
     },
     {

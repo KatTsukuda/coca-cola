@@ -52,19 +52,19 @@ app.get('/api', function apiIndex(req, res) {
         ]
     });
 });
+
 // show entry by id as JSON
 app.get('/api/signs/:id', function showSign(req, res) {
     let id = req.params.id;
-
     Sign.findOne({_id: id}, function (err, sign) {
         res.json(sign);
     });
 })
+
 // create new sign
 app.post('/api/signs', function signsCreate(req, res) {
     // object of post request containing data for the signs.js
     let newSign = new Sign(req.body);
-
     newSign.save(function (err, sign) {
         res.json(sign);
     });
@@ -86,6 +86,7 @@ app.delete('/api/signs/:id', function destroy(req, res) {
 
 //edit one sign using id
 app.put('/api/signs/:id', function update(req, res) {
+
     //get sign id from url params
     Sign.findById(req.params.id, function(err, sign) {
 
@@ -94,11 +95,11 @@ app.put('/api/signs/:id', function update(req, res) {
         sign.city = req.body.city;
         sign.state = req.body.state;
         sign.description = req.body.description;
+
         // save updated sign in DATABASE
         if (sign.save()) {
             res.json(sign);
-        }
-        else {
+        } else {
             res.send('sign cannot be saved :(')
         }
     });
