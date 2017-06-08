@@ -6,6 +6,7 @@ const signSchema = new Schema ({
     street_address: String,
     city: String,
     state: String,
+    rating: Number,
     description: String,
     image_url: String
 });

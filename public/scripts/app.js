@@ -2,7 +2,6 @@ let $signList;
 let allSigns = [];
 
 $(document).ready(function() {
-    console.log('app.js loaded!');
 
     $signList = $('.group');
 
@@ -26,9 +25,6 @@ $(document).ready(function() {
 
     // DESTROY //
     $signList.on('click', '.deleteBtn', function(event) {
-        console.log('clicked delete button ', '/api/signs/' + $(this).attr('data-id'));
-
-
         $.ajax({
             method: 'DELETE',
             url: '/api/signs/' + $(this).attr('data-id'),
@@ -36,9 +32,9 @@ $(document).ready(function() {
         });
     });
 
+
     // initiate modal -- see modal event click in html below
     $('.group').on('click', '.editBtn', function(event) {
-        console.log('clicked edit button ' + $(this).attr('data-id'));
 
         signID = $(this).attr('data-id');
 
@@ -48,16 +44,20 @@ $(document).ready(function() {
     // PUT method
     $('#edit-sign-data-save').on('click', function() {
 
-        console.log(signID)
-
         $.ajax({
             method: 'PUT',
             url: '/api/signs/' + signID,
             data: $('.edit-entry').serialize(),
             success: handleSignUpdateResponse
         })
+                $('#edit-sign-modal').modal('hide');
 
-        $('#edit-sign-modal').modal('hide');
+        var dialog = bootbox.dialog({
+            message: '<p class="text-center">Refreshing! <img src="https://media.giphy.com/media/GkVvLW2NceSyY/giphy.gif"></p>',
+            closeButton: false
+        });
+        // close alert
+        dialog.modal('hide');
     })
 
     /////////////////////////////
@@ -66,26 +66,24 @@ $(document).ready(function() {
     function handleSignUpdateResponse(res, err) {
         let signID = res._id
         $('#' + signID).replaceWith(getSignHTML(res));
-        console.log(err);
-        console.log(getSignHTML(res));
-
     }
+
     function getSignHTML(sign) {
 
     return `<div class="entry" id="${sign._id}">
         <div class="col-sm-3">
             <div class="sign clearfix">
-                <img src="${sign.image_url}">
+                <img class="materialboxed" width="300" src="${sign.image_url}">
                 <div class="overlay">
-                    <p class="description">${sign.street_address}</p>
-                    <p class="description">${sign.city}, ${sign.state}</p>
-                    <p class="description">${sign.description}</p>
+                    <p>${sign.street_address}<br>${sign.city}, ${sign.state}</p>
+                    <img class="sign-image" src="${sign.image_url}">
+                    <p>${sign.description}</p>
                 </div>
             </div>
-            <button type="button" class="deleteBtn btn btn-default btn-lg" data-id="${sign._id}">
+            <button type="button" class="deleteBtn btn btn-default" data-id="${sign._id}">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
-            <button type="button" data-toggle="modal" data-target="#edit-sign-modal" class="editBtn btn btn-default btn-lg" data-id="${sign._id}">
+            <button type="button" data-toggle="modal" data-target="#edit-sign-modal" class="editBtn btn btn-default" data-id="${sign._id}">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </button>
         </div>
@@ -115,24 +113,11 @@ $(document).ready(function() {
     render();
     }
 
-    function deleteSuccess(json) {
-        let sign = json;
+    function deleteSuccess(res, req) {
 
-        console.log(json);
-
-        let signID = sign._id;
-
-        // search through array for signID to delete from array
-        for (let index = 0; index < allSigns.length; index++) {
-            if (allSigns[index]._id === signID) {
-                allSigns.splice(index);
-                // end for loop and splice once signID is found
-                break;
-            }
-        }
-        render();
+        let signID = res._id
+        $('#' + signID).remove();
     }
-
 
     // response for CREATE to request new sign entries
     function newSignSuccess(json) {
@@ -141,25 +126,6 @@ $(document).ready(function() {
     // add new sign entry to top of list -- unshift is inverse of push method
     allSigns.unshift(json);
 
-    render();
-    }
-
-    // response for DESTROY to delete sign entry
-    function deleteSuccess(json) {
-    let sign = json;
-
-    console.log(json);
-
-    let signID = sign._id;
-
-    // search through array for signID to delete from array
-    for(let index=0; index<allSigns.length; index++) {
-        if(allSigns[index]._id === signID) {
-            allSigns.splice(index);
-            // end for loop and splice once signID is found
-            break;
-        }
-    }
     render();
     }
 });
