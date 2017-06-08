@@ -17,6 +17,11 @@ h1 {
     color: #FFFFFF;
     margin-top: 50px;
 }
+.modal-header {
+    font-family: 'loki_colaregular';
+    font-size: 45px;
+    color: #e6142c;
+}
 body {
     font-family: 'Open Sans', sans-serif;
 }

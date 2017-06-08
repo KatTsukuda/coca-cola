@@ -94,6 +94,20 @@ var sign_data = [
     image_url: 'http://i.imgur.com/2KamFNx.jpg',
     },
     {
+    street_address: '601 Tompkins Ave',
+    city: 'San Francisco',
+    state: 'California',
+    description: 'A vintage 15 by 7 foot Coca-Cola sign, probably installed in the 1930s, in an aged commercial neighborhood in Bernal Heights has set off a fight over preservation, obesity and the power of the government.',
+    image_url: 'http://i.imgur.com/F8YuXw0.jpg'
+    },
+    {
+    street_address: '701 Bryant St',
+    city: 'San Francisco',
+    state: 'California',
+    description: "Standing 112 feet above Bryant Street atop a three-story building in San Francisco's South of Market area, the billboard has been a landmark for drivers going to and from the Bay Bridge since 1937 -- the year after the bridge that connects San Francisco to Oakland opened.",
+    image_url: 'http://i.imgur.com/5aWZ0SM.jpg'
+    },
+    {
     street_address: 'Atacama Desert',
     city: 'Arica',
     state: 'Chile',
