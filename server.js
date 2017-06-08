@@ -82,11 +82,6 @@ app.delete('/api/signs/:id', function destroy(req, res) {
     Sign.findOneAndRemove({_id: req.params.id}, function (err, sign) {
         res.json(sign);
     })
-    // let signID = req.params.id;
-    // Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
-    //     console.log('delete sign info: ', deletedSign)
-    //     res.json(deletedSign);
-    // });
 });
 
 //edit one sign using id
@@ -98,7 +93,6 @@ app.put('/api/signs/:id', function update(req, res) {
         sign.street_address = req.body.street_address;
         sign.city = req.body.city;
         sign.state = req.body.state;
-        sign.image_url = req.body.image_url;
         sign.description = req.body.description;
         // save updated sign in DATABASE
         if (sign.save()) {
