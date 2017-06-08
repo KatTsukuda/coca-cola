@@ -21,9 +21,8 @@ var createSignData = require('./seed');
 var Sign = db.Sign;
 
 
-// clear sign entries on reload
+// clear seed data entries on reload to prevent compiling
 Sign.deleteMany({}, function(err) {
-    console.log('clear successful');
 });
 
 // populate seed data
@@ -55,24 +54,18 @@ app.get('/api', function apiIndex(req, res) {
 });
 // show entry by id as JSON
 app.get('/api/signs/:id', function showSign(req, res) {
-    console.log('sign id info: ' + req.body);
-
     let id = req.params.id;
+
     Sign.findOne({_id: id}, function (err, sign) {
         res.json(sign);
     });
 })
 // create new sign
 app.post('/api/signs', function signsCreate(req, res) {
-    // create new sign with form data ('req.body');
-    console.log('POST REQUEST FOR DATA: ', req.body);
     // object of post request containing data for the signs.js
-    var newSign = new Sign(req.body);
+    let newSign = new Sign(req.body);
 
     newSign.save(function (err, sign) {
-        if(err) {
-            console.log("no sign created. try again", err);
-        }
         res.json(sign);
     });
 });
@@ -80,34 +73,33 @@ app.post('/api/signs', function signsCreate(req, res) {
 //all signs as JSON
 app.get('/api/signs', function index(req, res) {
     Sign.find({}, function(err, signs) {
-        if (err) { return console.log('index error: ' + err); }
         res.json(signs);
     });
 });
 
 //delete one sign using id
 app.delete('/api/signs/:id', function destroy(req, res) {
-    let signID = req.params.id;
-    Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
-        res.json(deletedSign);
-    });
+    Sign.findOneAndRemove({_id: req.params.id}, function (err, sign) {
+        res.json(sign);
+    })
+    // let signID = req.params.id;
+    // Sign.findOneAndRemove({ _id: signID }, function(err, deletedSign) {
+    //     console.log('delete sign info: ', deletedSign)
+    //     res.json(deletedSign);
+    // });
 });
 
 //edit one sign using id
-app.put('/api/signs/:id', function (req, res) {
-    console.log(req);
+app.put('/api/signs/:id', function update(req, res) {
     //get sign id from url params
     Sign.findById(req.params.id, function(err, sign) {
-        console.log('sign: ' + sign)
-        if (err) {
-            res.send(err);
-        }
 
         //update sign attributes
         sign.street_address = req.body.street_address;
         sign.city = req.body.city;
         sign.state = req.body.state;
         sign.image_url = req.body.image_url;
+        sign.description = req.body.description;
         // save updated sign in DATABASE
         if (sign.save()) {
             res.json(sign);

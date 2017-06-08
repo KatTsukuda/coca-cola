@@ -76,7 +76,7 @@ footer {
     opacity: 1;
 }
 
-.description {
+.overlay p {
     color: #FFFFFF;
     margin: 30px;
     top: 50%;
