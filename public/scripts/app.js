@@ -40,6 +40,7 @@ $(document).ready(function() {
     $('.group').on('click', '.editBtn', function(event) {
         console.log('clicked edit button ' + $(this).attr('data-id'));
 
+        signID = $(this).attr('data-id');
 
     });
 
@@ -47,20 +48,14 @@ $(document).ready(function() {
     // PUT method
     $('#edit-sign-data-save').on('click', function() {
 
-        // let signID = $('.group').attr('data-id')
-        //
-        // var data = {
-        //     description: signID.find('.street-address').val(),
-        //     artistName: signID.find('.city').val(),
-        //     releaseDate: signID.find('.state').val(),
-        //     releaseDate: signID.find('.description').val(),
-        //     imageURL: signID.find('.image-url').val()
-        // }
-        // $.ajax({
-        //     method: 'PUT',
-        //     url: '/api/signs' + signID,
-        //     success: handleSignUpdateResponse
-        // })
+        console.log(signID)
+
+        $.ajax({
+            method: 'PUT',
+            url: '/api/signs/' + signID,
+            data: $('.edit-entry').serialize(),
+            success: handleSignUpdateResponse
+        })
 
         $('#edit-sign-modal').modal('hide');
     })
@@ -68,10 +63,16 @@ $(document).ready(function() {
     /////////////////////////////
     //*** HANDLE FUNCTIONS ***//
     ///////////////////////////
+    function handleSignUpdateResponse(res, err) {
+        let signID = res._id
+        $('#' + signID).replaceWith(getSignHTML(res));
+        console.log(err);
+        console.log(getSignHTML(res));
 
+    }
     function getSignHTML(sign) {
 
-    return `<div class="entry">
+    return `<div class="entry" id="${sign._id}">
         <div class="col-sm-3">
             <div class="sign clearfix">
                 <img src="${sign.image_url}">

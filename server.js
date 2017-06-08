@@ -95,6 +95,7 @@ app.delete('/api/signs/:id', function destroy(req, res) {
 
 //edit one sign using id
 app.put('/api/signs/:id', function (req, res) {
+    console.log(req);
     //get sign id from url params
     Sign.findById(req.params.id, function(err, sign) {
         console.log('sign: ' + sign)
@@ -106,15 +107,14 @@ app.put('/api/signs/:id', function (req, res) {
         sign.street_address = req.body.street_address;
         sign.city = req.body.city;
         sign.state = req.body.state;
-        sign.description = req.body.description;
         sign.image_url = req.body.image_url;
         // save updated sign in DATABASE
-        sign.save(function (err) {
-            if (err) {
-                return res.send(err);
-            }
-                res.json({message: 'Sign Updated'});
-        });
+        if (sign.save()) {
+            res.json(sign);
+        }
+        else {
+            res.send('sign cannot be saved :(')
+        }
     });
 });
 
