@@ -36,16 +36,34 @@ $(document).ready(function() {
         });
     });
 
-
-    // EDIT //
     // initiate modal -- see modal event click in html below
     $('.group').on('click', '.editBtn', function(event) {
         console.log('clicked edit button ' + $(this).attr('data-id'));
 
-        let currentSignID = $(this).attr('data-id');
 
-        $('#edit-sign-modal').data('data-id', currentSignID)
     });
+
+
+    // PUT method
+    $('#edit-sign-data-save').on('click', function() {
+
+        // let signID = $('.group').attr('data-id')
+        //
+        // var data = {
+        //     description: signID.find('.street-address').val(),
+        //     artistName: signID.find('.city').val(),
+        //     releaseDate: signID.find('.state').val(),
+        //     releaseDate: signID.find('.description').val(),
+        //     imageURL: signID.find('.image-url').val()
+        // }
+        // $.ajax({
+        //     method: 'PUT',
+        //     url: '/api/signs' + signID,
+        //     success: handleSignUpdateResponse
+        // })
+
+        $('#edit-sign-modal').modal('hide');
+    })
 
     /////////////////////////////
     //*** HANDLE FUNCTIONS ***//
@@ -67,8 +85,7 @@ $(document).ready(function() {
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
             <button type="button" data-toggle="modal" data-target="#edit-sign-modal" class="editBtn btn btn-default btn-lg" data-id="${sign._id}">
-
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Refresh Yourself
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </button>
         </div>
     </div>`;
@@ -115,25 +132,6 @@ $(document).ready(function() {
         render();
     }
 
-    function editSuccess(json) {
-
-        let sign = json;
-
-        //find sign id stored in HTML as 'data-id'
-        let signID = sign._id;
-
-        //search through array for signID to edit sign from array
-        for (let i = 0; i < allSigns.length; i++) {
-            if (allSigns[i]._id === signID) {
-
-                //replace sign to update with newly updated version(data)
-                signs.findIdAndUpdate(req.params.id);
-                break;
-            }
-        }
-        //render all signs to view
-        render();
-    }
 
     // response for CREATE to request new sign entries
     function newSignSuccess(json) {
@@ -161,29 +159,6 @@ $(document).ready(function() {
             break;
         }
     }
-    render();
-    }
-
-    //////////////////////////////////
-    //*** MODAL and Edit Handlers***//
-    /////////////////////////////////
-    function editSuccess(json) {
-
-        let sign = json;
-
-        //find sign id stored in HTML as 'data-id'
-        let signID = sign._id;
-
-          //search through array for signID to edit sign from array
-            for(let i=0; i<allSigns.length; i++) {
-                if(allSigns[i]._id === signID) {
-
-            //replace sign to update with newly updated version(data)
-            signs.findIdAndUpdate(req.params.id);
-            break;
-        }
-    }
-    //render all signs to view
     render();
     }
 });
