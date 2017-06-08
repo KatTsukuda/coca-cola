@@ -5,90 +5,103 @@
          url('/webfontkit/lokicola_3-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    }
 
-}
 div.row.header {
     background-color: #e6142c;
     }
+
 h1 {
     font-family: 'loki_colaregular';
     font-size: 50px;
     text-align: left;
     color: #FFFFFF;
     margin-top: 50px;
-}
+    }
+
 .modal-header {
     font-family: 'loki_colaregular';
     font-size: 45px;
     color: #e6142c;
-}
+    }
+
 body {
     font-family: 'Open Sans', sans-serif;
-}
+    }
+
 .modal-header {
     font-family: 'Federo', sans-serif;
     font-size: 25px;
-}
+    }
+
 .modal {
     max-height: 100%;
-}
+    }
+
 .cola-logo {
     float: left;
     width: 80px;
     height: auto;
     margin: 20px 10px 20px 50px;
-}
+    }
+
 h5{
     margin: 0 0 -15px 115px;
     font-weight: bold;
-}
+    }
+
 div.header-tagline {
     margin: -25px 0 15px 80px;
-}
+    }
+
 button.btn.btn-primary, .editBtn, .deleteBtn {
     background-color: #e6142c;
     border-color: #e6142c;
-}
+    }
 
 /* SUBMIT FORM */
 .form-gif {
     width: 60%;
     height: auto;
     margin: 50px 0 10px 100px;
-}
+    }
+
 .btn-danger, .btn-secondary{
     background-color: #029fae;
     border-color: #029fae;
-}
+    }
 
 /* EDIT FORM */
 #edit-sign-data-save {
     background-color: #e6142c;
     border-color: #e6142c;
-}
+    }
 
 /* FOOTER */
 footer p {
     margin: 25px 0 20px 20px;
     color: #FFFFFF;
-}
+    }
+
 footer {
     background-color: #e6142c;
-}
+    }
 
 /*  ENTRY FRAMEWORK */
 .clearfix {
     overflow: auto;
     zoom: 1;
-}
+    }
+
 .sign {
     display: block;
     margin-top: 15px;
-}
+    }
+
 .sign img {
     position: relative;
     height: 300px;
-}
+    }
 
 .overlay {
     position: absolute;
@@ -101,10 +114,11 @@ footer {
     opacity: 0;
     transition: .5s ease;
     background-color: #e6142c;
-}
+    }
+
 .sign:hover .overlay {
     opacity: 1;
-}
+    }
 
 .overlay p {
     color: #FFFFFF;
@@ -112,12 +126,13 @@ footer {
     top: 50%;
     left: 50%;
     font-size: 11px;
-}
+    }
+
 img.sign-image {
     height: 100px;
     margin-left: 50px;
+    }
 
-}
 .deleteBtn, .editBtn {
     margin: 25px 0 15px 0;
-}
+    }
