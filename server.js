@@ -107,7 +107,7 @@ app.put('/api/signs/:id', function (req, res) {
         sign.street_address = req.body.street_address;
         sign.city = req.body.city;
         sign.state = req.body.state;
-        sign.image_url = req.body.image_url;
+        sign.description = req.body.description;
         // save updated sign in DATABASE
         if (sign.save()) {
             res.json(sign);
